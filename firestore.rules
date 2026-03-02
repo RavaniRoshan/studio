@@ -1,0 +1,125 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * ACADEMIAFLOW SECURITY RULES (PROTOTYPE MODE)
+     *
+     * Core Philosophy: 
+     * This ruleset implements a strict user-ownership model. The security architecture 
+     * is designed for rapid iteration (Prototyping Mode), meaning it enforces strict 
+     * authorization (who can access what) but allows flexibility in data shapes (what 
+     * the data looks like).
+     *
+     * Data Structure:
+     * All application data is organized hierarchically under the path /users/{userId}. 
+     * This nesting ensures that data is naturally partitioned by user, simplifying 
+     * both frontend queries and backend security logic.
+     *
+     * Key Security Decisions:
+     * 1. Path-Based Authorization: Access to any document is primarily determined by 
+     *    the {userId} wildcard in the document path. A user can only access data if 
+     *    their authenticated UID matches the {userId} in the path.
+     * 2. Denormalization for Authorization: Sub-collections (subjects, studySessions, 
+     *    notes) include a 'userId' field. While redundant to the path, this allows 
+     *    for direct validation during writes without cross-document lookups.
+     * 3. Immutability: Critical relational fields, specifically 'userId', are 
+     *    enforced as immutable after creation to prevent data from being "orphaned" 
+     *    or moved to different accounts.
+     * 4. Private-by-Default: There are no public collections. All data requires 
+     *    authentication and matching ownership.
+     */
+
+    // --- Helper Functions ---
+
+    /**
+     * @description Checks if the request is made by an authenticated user.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the authenticated user's UID matches the provided userId.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Combines ownership check with a check for document existence.
+     * Used for update and delete operations to ensure the target document exists 
+     * and belongs to the user.
+     */
+    function isExistingOwner(userId) {
+      return resource != null && isOwner(userId);
+    }
+
+    // --- Collection Rules ---
+
+    /**
+     * @description Rules for the User profile document.
+     * @path /users/{userId}
+     * @allow (create) if auth.uid == "user_123" and data.id == "user_123"
+     * @deny (get) if auth.uid == "user_abc" and path is /users/user_xyz
+     * @principle Validates that users can only create and manage their own profile.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description Rules for academic subjects created by the user.
+       * @path /users/{userId}/subjects/{subjectId}
+       * @allow (list) if auth.uid == userId
+       * @deny (update) if attempting to change the 'userId' field
+       * @principle Enforces path-based ownership and relational integrity.
+       */
+      match /subjects/{subjectId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+
+      /**
+       * @description Rules for recorded study sessions.
+       * @path /users/{userId}/studySessions/{sessionId}
+       * @allow (create) if auth.uid == userId and request.resource.data.userId == userId
+       * @deny (delete) if the document does not exist or user is not the owner
+       * @principle Ensures study session data is private and correctly linked to the owner.
+       */
+      match /studySessions/{sessionId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+
+      /**
+       * @description Rules for user notes (Notebooks Pages feature).
+       * @path /users/{userId}/notes/{noteId}
+       * @allow (get) if auth.uid matches the userId in the path
+       * @deny (create) if the userId field in the data does not match the path userId
+       * @principle Supports private note-taking with strict ownership enforcement.
+       */
+      match /notes/{noteId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+  }
+}
+
+// AcademiaFlow Security Rules generated for Prototyping Mode.
+// Focus: Authorization and Relational Integrity. Schema validation is omitted for flexibility.
+// Principles: P1, P2, P4, P5, P6, P7, P8 applied.
+// Pattern: Path-based Ownership (P3.1) and Self-Creation (P3.4).

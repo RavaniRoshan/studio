@@ -1,0 +1,290 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user account in AcademiaFlow, storing basic profile information and personalized settings.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address, used for identification.",
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's preferred display name."
+        },
+        "defaultStudyDurationMinutes": {
+          "type": "number",
+          "description": "The user's default duration for study sessions, in minutes."
+        },
+        "defaultBreakDurationMinutes": {
+          "type": "number",
+          "description": "The user's default duration for breaks, in minutes."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the user account was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the user account was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "displayName",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Subject": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Subject",
+      "type": "object",
+      "description": "Represents an academic subject or topic a user studies, allowing for categorization of study sessions and notes.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Subject entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User who owns this subject. (Relationship: User 1:N Subject)"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the subject, e.g., 'Calculus I' or 'World History'."
+        },
+        "description": {
+          "type": "string",
+          "description": "An optional description or brief overview of the subject."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the subject was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the subject was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StudySession": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "StudySession",
+      "type": "object",
+      "description": "Records details of a single study session, including its duration, associated subject, and any notes.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the StudySession entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User who conducted this study session. (Relationship: User 1:N StudySession)"
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Reference to the Subject this session was focused on. (Relationship: Subject 1:N StudySession)"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The precise start time of the study session.",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "The precise end time of the study session.",
+          "format": "date-time"
+        },
+        "durationMinutes": {
+          "type": "number",
+          "description": "The total duration of the study session in minutes."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Short notes or key takeaways from this specific study session."
+        },
+        "aiFocusQuestion": {
+          "type": "string",
+          "description": "The focused question or sub-topic suggested by the AI for this session, if used."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the study session record was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the study session record was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "subjectId",
+        "startTime",
+        "endTime",
+        "durationMinutes",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Note": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Note",
+      "type": "object",
+      "description": "Represents a user's general or session-specific note, designed to support the 'notebooks pages' feature.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Note entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User who created this note. (Relationship: User 1:N Note)"
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Optional reference to the Subject this note is associated with. (Relationship: Subject 1:N Note)"
+        },
+        "studySessionId": {
+          "type": "string",
+          "description": "Optional reference to the StudySession this note pertains to. (Relationship: StudySession 1:N Note)"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the note."
+        },
+        "content": {
+          "type": "string",
+          "description": "The main text content of the note."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the note was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the note was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "title",
+        "content",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores individual user profiles. The document ID (`userId`) must match `request.auth.uid` for direct user ownership.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user, matching Firebase Authentication's UID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/subjects/{subjectId}",
+        "definition": {
+          "entityName": "Subject",
+          "schema": {
+            "$ref": "#/backend/entities/Subject"
+          },
+          "description": "Stores academic subjects created by a specific user. Includes denormalized 'userId' for authorization independence, ensuring the subject is owned by the user specified in the path.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user who owns this subject."
+            },
+            {
+              "name": "subjectId",
+              "description": "The unique identifier for the specific subject."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/studySessions/{sessionId}",
+        "definition": {
+          "entityName": "StudySession",
+          "schema": {
+            "$ref": "#/backend/entities/StudySession"
+          },
+          "description": "Records details of study sessions conducted by a user. Includes denormalized 'userId' for authorization independence, ensuring the session is owned by the user specified in the path.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user who conducted this study session."
+            },
+            {
+              "name": "sessionId",
+              "description": "The unique identifier for the specific study session."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/notes/{noteId}",
+        "definition": {
+          "entityName": "Note",
+          "schema": {
+            "$ref": "#/backend/entities/Note"
+          },
+          "description": "Contains user-specific notes, supporting the 'notebooks pages' feature. Includes denormalized 'userId' for authorization independence, ensuring the note is owned by the user specified in the path.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user who created this note."
+            },
+            {
+              "name": "noteId",
+              "description": "The unique identifier for the specific note."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure for AcademiaFlow is designed around individual user ownership, leveraging a strict hierarchical path structure to ensure robust security, scalability, and debuggability. All user-specific data is nested directly under a top-level `/users/{userId}` collection.\n\n**Authorization Independence (CRITICAL):** This design principle is meticulously applied. For `User` profiles, the document ID is the user's `uid`, directly tying authorization to `request.auth.uid`. For all subcollections (`subjects`, `studySessions`, `notes`), the `userId` attribute is explicitly denormalized into every document. This means that security rules can always check `request.auth.uid == resource.data.userId` (for writes) or `request.auth.uid == userId` (from the path for reads) without requiring expensive and complex `get()` calls to parent documents. This approach allows atomic operations and simplifies rule logic considerably, making it easy to reason about access permissions.\n\n**Query-Allowed Patterns (QAPs):** The hierarchical structure inherently supports QAPs. By placing all private user data under `/users/{userId}`, any `list` operation initiated by an authenticated user is automatically scoped to their own data. For example, a query to `/users/{request.auth.uid}/subjects` will only return subjects owned by the current user. The Firestore rules will enforce that the `{userId}` wildcard in the path must match `request.auth.uid`, thus preventing users from accidentally or maliciously querying another user's data. This eliminates the need for complex filter clauses in security rules for `list` operations, making them efficient and secure by design.\n\n**Structural Segregation:** All documents within a given collection (`/users/{userId}/subjects`, `/users/{userId}/studySessions`, `/users/{userId}/notes`) share the same security posture – they are private to the owning user. There is no mixing of public/private or different permission levels within the same collection, simplifying security rule sets.\n\n**Access Modeling:** Path-based ownership (`/users/{userId}/data`) is consistently used for all entities. `User` data is at `/users/{userId}`. `Subjects`, `StudySessions`, and `Notes` are nested directly under the user's path, reflecting a clear 1:N relationship with the `User` and ensuring data privacy. The 'notebooks pages' feature is directly supported by the `/users/{userId}/notes` collection, allowing easy access to all notes for a given user."
+  }
+}
