@@ -1,7 +1,21 @@
+
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { Download, Globe, ArrowRight } from "lucide-react";
 
 export default function LandingPage() {
+  const { toast } = useToast();
+
+  const handleDownload = () => {
+    toast({
+      title: "Download Starting",
+      description: "Moxie for Windows is being prepared. Check your downloads folder!",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-grid flex flex-col items-center">
       {/* Navigation */}
@@ -14,7 +28,7 @@ export default function LandingPage() {
           <span className="font-semibold text-lg tracking-tight">Moxie</span>
         </div>
         
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+        <div className="hidden md:flex gap-8 text-sm font-black uppercase tracking-widest text-muted-foreground">
           <Link href="/" className="hover:text-black">Home</Link>
           <Link href="/dashboard" className="hover:text-black">Dashboard</Link>
           <Link href="/timer" className="hover:text-black">Timer</Link>
@@ -22,14 +36,14 @@ export default function LandingPage() {
         </div>
 
         <Link href="/signup">
-          <Button variant="outline" className="border-black rounded text-xs font-semibold hover:bg-black hover:text-white transition-colors">
+          <Button variant="outline" className="border-2 border-black rounded-xl text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             Sign Up
           </Button>
         </Link>
       </nav>
 
       {/* Hero Section */}
-      <header className="w-full max-w-3xl mx-auto px-6 pt-16 pb-24 text-center relative z-10">
+      <header className="w-full max-w-4xl mx-auto px-6 pt-16 pb-24 text-center relative z-10">
         <div className="flex justify-center mb-10">
           <svg width="180" height="140" viewBox="0 0 180 140" className="doodle">
             <path d="M30 40 L35 30 L40 40 L50 45 L40 50 L35 60 L30 50 L20 45 Z" fill="#FFC107" stroke="none"/>
@@ -44,15 +58,31 @@ export default function LandingPage() {
           </svg>
         </div>
         
-        <h1 className="text-5xl md:text-6xl font-medium mb-8 leading-[1.1]">
+        <h1 className="text-5xl md:text-7xl font-medium mb-8 leading-[1.1]">
           The notebook that <br /> <span className="italic">thinks</span> with you
         </h1>
         
-        <Link href="/login">
-          <Button size="lg" className="bg-black text-white px-10 py-6 text-sm font-semibold rounded hover:bg-gray-800 transition-colors">
-            Start Writing
+        <p className="text-xl text-muted-foreground italic serif mb-12 max-w-2xl mx-auto">
+          Capture ideas, connect concepts, and build your digital brain. Choose how you want to work today.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <Link href="/login" className="w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-auto bg-black text-white px-10 py-8 text-sm font-black uppercase tracking-widest rounded-2xl hover:bg-gray-800 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none flex gap-3">
+              <Globe className="h-5 w-5" />
+              Open on Web
+            </Button>
+          </Link>
+          <Button 
+            onClick={handleDownload}
+            variant="outline" 
+            size="lg" 
+            className="w-full sm:w-auto border-2 border-black px-10 py-8 text-sm font-black uppercase tracking-widest rounded-2xl hover:bg-accent transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none flex gap-3"
+          >
+            <Download className="h-5 w-5" />
+            Download for Windows
           </Button>
-        </Link>
+        </div>
       </header>
 
       {/* Blue Lined Section */}
@@ -64,7 +94,7 @@ export default function LandingPage() {
             <span>Docs</span>
           </div>
 
-          <div className="bg-[#4D7BFF] w-full max-w-3xl mx-auto rounded-xl shadow-2xl p-10 md:p-20 text-left relative overflow-hidden h-[350px] hand-drawn-border" style={{ borderColor: '#4D7BFF' }}>
+          <div className="bg-[#4D7BFF] w-full max-w-3xl mx-auto rounded-3xl shadow-2xl p-10 md:p-20 text-left relative overflow-hidden h-[400px] hand-drawn-border border-2 border-black">
             <h2 className="text-white text-4xl md:text-5xl mb-6 font-medium relative z-10 leading-tight">One tool.<br />A million possibilities.</h2>
             <p className="text-white/80 text-lg max-w-sm relative z-10 font-medium">Capture ideas, connect concepts, and build your digital brain without friction.</p>
             
@@ -77,7 +107,7 @@ export default function LandingPage() {
 
       {/* Features Vertical List */}
       <section className="w-full max-w-2xl mx-auto px-6 py-32 text-center">
-        <h2 className="text-4xl md:text-5xl mb-24 italic">All the tools you <br />need to stay focused</h2>
+        <h2 className="text-4xl md:text-5xl mb-24 italic serif">All the tools you <br />need to stay focused</h2>
         
         <div className="flex flex-col gap-28 items-center">
           <FeatureItem 
@@ -124,7 +154,7 @@ export default function LandingPage() {
 
       {/* Scattered Notes Section */}
       <section className="w-full max-w-xl mx-auto px-6 py-24 text-center">
-        <h2 className="text-4xl md:text-5xl mb-24">Stop juggling five <br />different apps.</h2>
+        <h2 className="text-4xl md:text-5xl mb-24 serif italic">Stop juggling five <br />different apps.</h2>
         
         <div className="flex flex-col items-center gap-6 relative pb-20">
           <StickyNote 
@@ -169,12 +199,12 @@ export default function LandingPage() {
           "I use it for literally everything. It's like an extension of my brain."
         </div>
 
-        <div className="bg-[#FFC107] w-full max-w-2xl mx-auto rounded-2xl p-12 md:p-16 relative overflow-hidden hand-drawn-border border-2 border-black flex flex-col md:flex-row items-center justify-between text-left gap-10">
+        <div className="bg-[#FFC107] w-full max-w-2xl mx-auto rounded-3xl p-12 md:p-16 relative overflow-hidden hand-drawn-border border-2 border-black flex flex-col md:flex-row items-center justify-between text-left gap-10">
           <div className="z-10 w-full md:w-1/2">
             <h3 className="text-3xl font-bold mb-4 text-black font-sans">Build your best work.</h3>
             <p className="text-lg text-black/80 mb-10 font-medium">Join 50,000+ scholars building on Moxie.</p>
             <Link href="/signup">
-              <Button className="bg-black text-white px-10 py-6 text-sm font-semibold rounded hover:scale-105 transition-transform">
+              <Button className="bg-black text-white px-10 py-6 text-sm font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                 Start Now
               </Button>
             </Link>
@@ -200,7 +230,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="w-full mt-auto py-16 px-6 border-t border-black/5 relative overflow-hidden bg-white/30 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 text-xs font-black text-gray-400 uppercase tracking-[0.2em] relative z-10">
           <div className="flex gap-10">
             <Link href="#" className="hover:text-black transition-colors">Twitter</Link>
             <Link href="#" className="hover:text-black transition-colors">LinkedIn</Link>
@@ -242,10 +272,10 @@ function FeatureItem({ title, desc, icon }: { title: string, desc: string, icon:
 
 function StickyNote({ color, rotate, title, text, zIndex, margin = "", textColor = "text-gray-700" }: { color: string, rotate: string, title: string, text: string, zIndex: string, margin?: string, textColor?: string }) {
   return (
-    <div className={`${color} p-8 w-72 hand-drawn-border ${rotate} scribble-hover text-left shadow-lg relative ${zIndex} ${margin}`}>
+    <div className={`${color} p-8 w-72 hand-drawn-border ${rotate} scribble-hover text-left shadow-lg relative ${zIndex} ${margin} border-2 border-black`}>
       <div className="w-10 h-2 bg-black/10 mx-auto mb-6 rounded-full mix-blend-multiply opacity-50 absolute top-3 left-1/2 -translate-x-1/2"></div>
       <p className={`font-black text-sm mb-3 mt-4 tracking-tighter uppercase ${textColor}`}>{title}</p>
-      <p className={`text-sm leading-relaxed font-medium ${textColor} opacity-90`}>{text}</p>
+      <p className={`text-sm leading-relaxed font-medium ${textColor} opacity-90 italic serif`}>{text}</p>
     </div>
   );
 }
