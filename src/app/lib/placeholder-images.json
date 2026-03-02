@@ -1,0 +1,29 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A clean, modern desk with a laptop and a plant, representing productivity.",
+      "imageUrl": "https://picsum.photos/seed/productivity/1200/800",
+      "imageHint": "clean workspace"
+    },
+    {
+      "id": "feature-timer",
+      "description": "A minimalist countdown timer icon or visual.",
+      "imageUrl": "https://picsum.photos/seed/timer/600/400",
+      "imageHint": "minimalist timer"
+    },
+    {
+      "id": "feature-dashboard",
+      "description": "A sleek analytical dashboard showing charts.",
+      "imageUrl": "https://picsum.photos/seed/dashboard/600/400",
+      "imageHint": "data visualization"
+    },
+    {
+      "id": "user-avatar",
+      "description": "A friendly user profile picture.",
+      "imageUrl": "https://picsum.photos/seed/user/100/100",
+      "imageHint": "person portrait"
+    }
+  ]
+}
