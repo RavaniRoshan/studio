@@ -9,7 +9,7 @@ export default function LandingPage() {
         <div className="flex items-center gap-2">
           <svg width="24" height="24" viewBox="0 0 24 24" className="doodle">
             <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/>
-            <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" stroke-dasharray="2 4"/>
+            <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" strokeDasharray="2 4"/>
           </svg>
           <span className="font-semibold text-lg tracking-tight">AcademiaFlow</span>
         </div>
@@ -40,7 +40,7 @@ export default function LandingPage() {
             <path d="M120 20 L150 50 L80 120 L50 120 L50 90 Z" fill="white" stroke="#2D2D2D" strokeWidth="1.5"/>
             <path d="M110 30 L140 60"/>
             <path d="M50 120 L65 105"/>
-            <path d="M60 20 C 40 10, 20 30, 40 40 C 60 50, 40 70, 20 60" stroke-dasharray="4 4"/>
+            <path d="M60 20 C 40 10, 20 30, 40 40 C 60 50, 40 70, 20 60" strokeDasharray="4 4"/>
           </svg>
         </div>
         
@@ -115,7 +115,7 @@ export default function LandingPage() {
                 <circle cx="15" cy="15" r="6"/>
                 <circle cx="45" cy="25" r="6"/>
                 <circle cx="25" cy="45" r="6"/>
-                <path d="M19 19 L41 21 M21 21 L23 40 M42 29 L29 42" stroke-dasharray="4 4"/>
+                <path d="M19 19 L41 21 M21 21 L23 40 M42 29 L29 42" strokeDasharray="4 4"/>
               </svg>
             }
           />
