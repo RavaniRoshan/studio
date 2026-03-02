@@ -4,26 +4,27 @@
 
 @layer base {
   :root {
-    --background: 60 30% 99%;
-    --foreground: 0 0% 10%;
+    --background: 48 33% 97%; /* #FCFBF5 - Paper background */
+    --foreground: 0 0% 18%;   /* #2D2D2D - Dark text */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 18%;
     --primary: 0 0% 0%;
-    --primary-foreground: 60 30% 98%;
+    --primary-foreground: 48 33% 98%;
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary-foreground: 0 0% 18%;
     --muted: 0 0% 94%;
     --muted-foreground: 0 0% 45%;
-    --accent: 45 92% 60%;
+    --accent: 45 100% 51%;     /* #FFC107 - Moxie Yellow */
     --accent-foreground: 0 0% 10%;
+    --moxie-blue: 225 100% 65%; /* #4D7BFF */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
+    --border: 0 0% 10%;
     --input: 0 0% 90%;
     --ring: 0 0% 10%;
-    --radius: 0.5rem;
+    --radius: 0.25rem;
   }
 }
 
@@ -34,16 +35,44 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
+  h1, h2, h3, .serif {
+    font-family: 'EB Garamond', serif;
+  }
 }
 
-.timer-ring {
-  transition: stroke-dashoffset 0.5s ease;
+.bg-grid {
+  background-image: 
+      linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
-.tilted-card {
-  transition: transform 0.3s ease;
+.bg-lined {
+  background-color: #E8F2FF;
+  background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(0,0,0,0.06) 31px,
+      rgba(0,0,0,0.06) 32px
+  );
 }
 
-.tilted-card:hover {
-  transform: rotate(0deg) translateY(-10px) !important;
+.hand-drawn-border {
+  border: 1.5px solid #2D2D2D;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.scribble-hover {
+  @apply transition-all duration-200;
+}
+.scribble-hover:hover {
+  transform: scale(1.02) rotate(-1deg);
+}
+
+.doodle {
+  stroke: #2D2D2D;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
