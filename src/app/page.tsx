@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ArrowRight, GraduationCap, Github, Twitter, Linkedin } from "lucide-react";
+import { Star, ArrowRight, GraduationCap, Github, Twitter, Linkedin, Sparkles, BookOpen, Clock, Target, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Navbar } from "@/components/layout/Navbar";
@@ -17,9 +17,31 @@ export default function LandingPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-20 px-4">
+      <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto flex flex-col items-center text-center">
-          <div className="w-full max-w-[400px] aspect-[4/3] relative mb-8">
+          <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full text-xs font-bold text-accent-foreground mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <Sparkles className="h-3 w-3" />
+            <span>POWERED BY ACADEMIC AI</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-primary mb-8 max-w-4xl leading-[1.1]">
+            Your academic journey, <span className="text-accent underline decoration-accent/30 underline-offset-8">organized</span>.
+          </h1>
+          
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 font-medium">
+            AcademiaFlow is the all-in-one workspace where your notes, focus sessions, and AI-powered insights live in perfect harmony.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 mb-20">
+            <Button size="lg" className="bg-primary text-white rounded-full px-10 py-7 text-base font-bold shadow-xl shadow-primary/10 transition-all hover:scale-105 hover:shadow-primary/20">
+              Start Studying Free
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-full px-10 py-7 text-base font-bold border-2 transition-all hover:bg-muted/50">
+              Watch Demo
+            </Button>
+          </div>
+
+          <div className="w-full max-w-[600px] aspect-[4/3] relative">
             <Image 
               src={heroImg?.imageUrl || "https://picsum.photos/seed/think/400/300"} 
               alt="Thinking illustration"
@@ -28,124 +50,119 @@ export default function LandingPage() {
               data-ai-hint="minimalist illustration"
             />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-8 max-w-xl leading-tight">
-            The notebook that thinks with you
-          </h1>
-          <Button size="lg" className="bg-primary text-white rounded-full px-10 py-6 text-base font-bold transition-transform hover:scale-105">
-            Log In
-          </Button>
         </div>
       </section>
 
+      {/* Trust Bar */}
+      <div className="py-12 border-y border-border/50 bg-muted/20">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground mb-8">Trusted by students from</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale">
+            <span className="text-xl font-bold">Stanford</span>
+            <span className="text-xl font-bold">MIT</span>
+            <span className="text-xl font-bold">Oxford</span>
+            <span className="text-xl font-bold">Harvard</span>
+            <span className="text-xl font-bold">Berkeley</span>
+          </div>
+        </div>
+      </div>
+
       {/* Feature Nav */}
-      <nav className="border-y border-border/50 py-6 mb-20 overflow-x-auto no-scrollbar">
+      <nav className="py-8 sticky top-20 z-40 bg-background/80 backdrop-blur-md border-b border-border/30 overflow-x-auto no-scrollbar">
         <div className="container mx-auto flex justify-center gap-8 md:gap-12 px-4 min-w-max">
-          {['Notes', 'Flashcards', 'Plan', 'Tasks', 'AI Writer', 'Notebooks', 'Numbers'].map((item) => (
-            <Link key={item} href="#" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">
+          {['Smart Notes', 'Flashcards', 'Study Planner', 'Task Flow', 'AI Co-writer', 'Shared Notebooks'].map((item) => (
+            <Link key={item} href="#" className="text-sm font-bold text-muted-foreground hover:text-primary transition-all relative group">
               {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
             </Link>
           ))}
         </div>
       </nav>
 
       {/* Main Feature Showcase */}
-      <section className="pb-32 px-4">
+      <section className="py-32 px-4 bg-white/30">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold text-primary mb-6">Everything you need in one place</h2>
-          <div className="flex justify-center gap-4 mb-12">
-            {['Big Notes', 'AI Flashcards', 'Pro Notebooks', 'The Workspace', 'Productivity'].map((tab, i) => (
-              <span key={tab} className={`text-sm font-bold cursor-pointer transition-colors ${i === 0 ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-                {tab}
-              </span>
-            ))}
-          </div>
-          <div className="relative w-full max-w-4xl mx-auto aspect-[16/10] bg-[#eef6ff] rounded-3xl p-10 overflow-hidden border border-border/20 shadow-sm">
-            <div className="absolute inset-0 flex items-center justify-center p-8">
-              <Image 
-                src={featureImg?.imageUrl || "https://picsum.photos/seed/schematic/800/500"}
-                alt="Feature showcase"
-                fill
-                className="object-contain p-12"
-                data-ai-hint="technical drawing"
-              />
-            </div>
-            <div className="relative text-left max-w-xs">
-              <h3 className="text-2xl font-bold text-blue-900 mb-2">Infinite Notes</h3>
-              <p className="text-blue-800/70 text-sm">Write freely without worrying about structure. We organize it for you.</p>
+          <h2 className="text-4xl font-bold text-primary mb-4">Deep work, simplified.</h2>
+          <p className="text-muted-foreground mb-16 max-w-lg mx-auto font-medium">A workspace designed to keep you in the flow state longer.</p>
+          
+          <div className="relative w-full max-w-5xl mx-auto aspect-[16/10] bg-muted/30 rounded-[2.5rem] p-4 md:p-8 overflow-hidden border border-border/20 shadow-2xl">
+            <div className="w-full h-full bg-white rounded-[2rem] shadow-inner overflow-hidden flex flex-col md:flex-row">
+              <aside className="w-full md:w-64 bg-muted/10 border-r border-border/50 p-6 hidden md:block">
+                <div className="space-y-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="h-4 bg-muted/40 rounded-full w-full"></div>
+                  ))}
+                  <div className="pt-8 space-y-2">
+                    <div className="h-32 bg-accent/5 rounded-2xl border border-accent/10"></div>
+                  </div>
+                </div>
+              </aside>
+              <main className="flex-1 p-8 md:p-12 relative flex items-center justify-center">
+                <Image 
+                  src={featureImg?.imageUrl || "https://picsum.photos/seed/schematic/800/500"}
+                  alt="Feature showcase"
+                  fill
+                  className="object-contain p-8 md:p-16"
+                  data-ai-hint="technical drawing"
+                />
+              </main>
             </div>
           </div>
         </div>
       </section>
 
       {/* Grid Features */}
-      <section className="py-20 px-4 bg-white/50">
+      <section className="py-32 px-4 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-20 max-w-lg mx-auto leading-tight">
-            All the tools you need and just some more
-          </h2>
-          <div className="grid md:grid-cols-3 gap-20">
+          <div className="grid md:grid-cols-3 gap-16 md:gap-24">
             <FeatureItem 
-              img="https://picsum.photos/seed/f1/200/200"
-              title="Smart Search"
-              desc="Find anything across your notes in milliseconds."
+              icon={<BookOpen className="h-8 w-8 text-primary" />}
+              title="Semantic Organization"
+              desc="Our AI automatically links related topics across different subjects and years."
             />
             <FeatureItem 
-              img="https://picsum.photos/seed/f2/200/200"
-              title="Audio Sync"
-              desc="Record and transcribe lectures directly into your notes."
+              icon={<Clock className="h-8 w-8 text-primary" />}
+              title="Focus Analytics"
+              desc="Understand your peak performance hours with detailed study session tracking."
             />
             <FeatureItem 
-              img="https://picsum.photos/seed/f3/200/200"
-              title="Collaborative"
-              desc="Share and edit notebooks with your classmates in real-time."
+              icon={<Users className="h-8 w-8 text-primary" />}
+              title="Peer Collaboration"
+              desc="Join study circles and contribute to community notebooks in real-time."
             />
           </div>
         </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="py-24 px-4 text-center">
-        <div className="flex justify-center gap-1 mb-6">
-          {[1, 2, 3, 4, 5].map(i => <Star key={i} className="h-5 w-5 fill-accent text-accent" />)}
-        </div>
-        <p className="text-2xl font-bold text-primary max-w-2xl mx-auto leading-tight italic">
-          "Now my notes actually lead to better results, not just a bunch of messy files somewhere."
-        </p>
-        <p className="text-muted-foreground mt-4 font-semibold">— Sarah Jenkins, Med Student</p>
       </section>
 
       {/* Split Feature */}
-      <section className="py-32 px-4">
-        <div className="container mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <section className="py-32 px-4 bg-background">
+        <div className="container mx-auto grid lg:grid-cols-2 gap-24 items-center">
           <div>
-            <h2 className="text-4xl font-bold mb-8">Built for how you learn</h2>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0"></div>
-                <div>
-                  <h4 className="font-bold text-lg">Visual Connections</h4>
-                  <p className="text-muted-foreground">Map your ideas visually to understand complex topics.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0"></div>
-                <div>
-                  <h4 className="font-bold text-lg">Active Recall</h4>
-                  <p className="text-muted-foreground">Automatic flashcard generation from your study notes.</p>
-                </div>
-              </li>
-            </ul>
-            <Link href="#" className="inline-flex items-center gap-2 mt-10 font-bold text-primary border-b-2 border-primary pb-1">
-              Read the story <ArrowRight className="h-4 w-4" />
-            </Link>
+            <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight">Your notes, but with <span className="text-accent italic">superpowers</span>.</h2>
+            <div className="space-y-8">
+              <div className="p-6 rounded-3xl bg-white border border-border/50 shadow-sm hover:shadow-md transition-all">
+                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <Target className="h-5 w-5 text-accent" />
+                  Smart Recall
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">AcademiaFlow predicts which topics you're likely to forget and schedules mini-reviews.</p>
+              </div>
+              <div className="p-6 rounded-3xl bg-white border border-border/50 shadow-sm hover:shadow-md transition-all">
+                <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-accent" />
+                  AI Synthesis
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">Turn long lecture recordings into structured study guides with one click.</p>
+              </div>
+            </div>
           </div>
-          <div className="bg-[#f5f5ed] p-12 rounded-[40px] border border-border/30 relative">
+          <div className="relative aspect-square bg-[#f5f5ed] rounded-[3rem] p-12 border border-border/20 shadow-xl overflow-hidden group">
+             <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
              <Image 
               src={learnImg?.imageUrl || "https://picsum.photos/seed/learn/500/400"}
               alt="Learning illustration"
-              width={500}
-              height={400}
-              className="object-contain"
+              fill
+              className="object-contain p-12 transition-transform duration-700 group-hover:scale-105"
               data-ai-hint="artistic sketch"
             />
           </div>
@@ -153,121 +170,105 @@ export default function LandingPage() {
       </section>
 
       {/* Cascading Cards */}
-      <section className="py-32 px-4 overflow-hidden">
+      <section className="py-32 px-4 bg-muted/10">
         <div className="container mx-auto text-center mb-24">
-          <h2 className="text-4xl font-bold mb-4">Stop juggling ten different apps</h2>
-          <p className="text-muted-foreground font-medium">All your productivity tools, reimagined in one notebook.</p>
+          <h2 className="text-4xl font-bold mb-6">Designed for the modern scholar</h2>
+          <p className="text-muted-foreground font-medium max-w-2xl mx-auto">We've reimagined every tool you need, stripping away the complexity to leave only the flow.</p>
         </div>
         
-        <div className="relative h-[1000px] max-w-2xl mx-auto">
+        <div className="relative h-[800px] max-w-2xl mx-auto">
           <TiltedCard 
-            color="bg-[#d4e6ff]" 
-            rotate="-3deg" 
-            title="Notes" 
-            desc="Capture ideas as fast as they come."
+            color="bg-white" 
+            rotate="-4deg" 
+            title="Mind Maps" 
+            desc="Visualize the connections between complex concepts automatically."
             top="top-0"
             zIndex="z-[5]"
           />
           <TiltedCard 
-            color="bg-[#ffe48d]" 
-            rotate="2deg" 
-            title="AI Co-pilot" 
-            desc="Ask questions about your own research."
-            top="top-[180px]"
+            color="bg-accent/10" 
+            rotate="3deg" 
+            title="AI Librarian" 
+            desc="Search your personal knowledge base with natural language questions."
+            top="top-[160px]"
             zIndex="z-[4]"
           />
           <TiltedCard 
-            color="bg-[#fff9e6]" 
-            rotate="-1deg" 
-            title="Planner" 
-            desc="Schedule your week with precision."
-            top="top-[360px]"
+            color="bg-primary/5" 
+            rotate="-2deg" 
+            title="Session Timer" 
+            desc="Optimized Pomodoro blocks synced with your course schedule."
+            top="top-[320px]"
             zIndex="z-[3]"
           />
           <TiltedCard 
-            color="bg-[#ffc2e0]" 
-            rotate="3deg" 
-            title="To-Do List" 
-            desc="Check off your daily academic goals."
-            top="top-[540px]"
+            color="bg-white" 
+            rotate="4deg" 
+            title="Auto-Flashcards" 
+            desc="Generated directly from your handwritten or typed notes."
+            top="top-[480px]"
             zIndex="z-[2]"
-          />
-          <TiltedCard 
-            color="bg-[#d4ffe6]" 
-            rotate="-2deg" 
-            title="Flashcards" 
-            desc="Master any subject with repetition."
-            top="top-[720px]"
-            zIndex="z-[1]"
           />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto bg-accent rounded-[50px] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
-          <div className="max-w-md relative z-10">
-            <h2 className="text-4xl font-bold mb-6">The new standard for notebooks</h2>
-            <p className="font-semibold text-accent-foreground mb-8">Join thousands of students who have upgraded their study routine.</p>
-            <Button className="bg-primary text-white rounded-full px-8 py-6 font-bold">Start Now</Button>
+      <section className="py-32 px-4">
+        <div className="container mx-auto bg-primary rounded-[3.5rem] p-12 md:p-24 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-16 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)]">
+          <div className="max-w-xl relative z-10 text-center md:text-left">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">Master your subjects.</h2>
+            <p className="text-xl font-medium text-white/70 mb-12">Stop fighting your tools and start mastering your craft. Sign up for the beta today.</p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 py-8 text-lg font-bold">Get Started Free</Button>
+              <Button size="lg" variant="ghost" className="text-white hover:bg-white/10 rounded-full px-8 py-8 text-lg font-bold">Talk to Sales</Button>
+            </div>
           </div>
-          <div className="relative z-10 w-full max-w-sm">
-            <Image 
-              src={teamImg?.imageUrl || "https://picsum.photos/seed/team/600/300"}
-              alt="Team collaborating"
-              width={400}
-              height={200}
-              className="object-contain"
-              data-ai-hint="people sketch"
-            />
+          <div className="relative z-10 w-full max-w-md hidden lg:block">
+            <div className="aspect-[4/3] relative">
+              <Image 
+                src={teamImg?.imageUrl || "https://picsum.photos/seed/team/600/300"}
+                alt="Team collaborating"
+                fill
+                className="object-contain"
+                data-ai-hint="people sketch"
+              />
+            </div>
           </div>
-          <div className="absolute top-0 right-0 h-full w-1/2 opacity-20 pointer-events-none">
-             <div className="w-full h-full bg-gradient-to-l from-white/30 to-transparent"></div>
-          </div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent rounded-full blur-[120px] opacity-20"></div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="pt-32 pb-12 px-4">
+      <footer className="pt-32 pb-16 px-4 bg-white border-t border-border/50">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24">
-            <div className="space-y-4">
-              <h4 className="font-bold">Product</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-primary">Features</Link></li>
-                <li><Link href="#" className="hover:text-primary">Pricing</Link></li>
-                <li><Link href="#" className="hover:text-primary">Download</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-bold">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-primary">About</Link></li>
-                <li><Link href="#" className="hover:text-primary">Careers</Link></li>
-                <li><Link href="#" className="hover:text-primary">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-bold">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-primary">Help Center</Link></li>
-                <li><Link href="#" className="hover:text-primary">Community</Link></li>
-                <li><Link href="#" className="hover:text-primary">Blog</Link></li>
-              </ul>
-            </div>
-            <div className="flex flex-col items-end gap-6">
-              <div className="flex gap-4">
-                <Twitter className="h-5 w-5 text-muted-foreground cursor-pointer hover:text-primary" />
-                <Linkedin className="h-5 w-5 text-muted-foreground cursor-pointer hover:text-primary" />
-                <Github className="h-5 w-5 text-muted-foreground cursor-pointer hover:text-primary" />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-32">
+            <div className="col-span-2 space-y-8">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="h-8 w-8 text-primary" />
+                <span className="font-bold text-2xl tracking-tight text-primary">AcademiaFlow</span>
               </div>
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-6 w-6 text-primary" />
-                <span className="font-bold text-lg text-primary">AcademiaFlow</span>
+              <p className="text-muted-foreground text-sm font-medium leading-relaxed max-w-xs">
+                The ultimate workspace for the modern student. Reimagined from the ground up to support how you actually learn.
+              </p>
+              <div className="flex gap-5">
+                <div className="h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+                  <Twitter className="h-4 w-4" />
+                </div>
+                <div className="h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+                  <Linkedin className="h-4 w-4" />
+                </div>
+                <div className="h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+                  <Github className="h-4 w-4" />
+                </div>
               </div>
             </div>
+            
+            <FooterColumn title="Product" links={['Features', 'Templates', 'Integrations', 'Pricing', 'Security']} />
+            <FooterColumn title="Resources" links={['Student Guide', 'Blog', 'Support Center', 'Community', 'Scholarships']} />
+            <FooterColumn title="Company" links={['About', 'Our Mission', 'Careers', 'Press', 'Contact']} />
           </div>
-          <div className="relative w-full h-20 mb-8 opacity-40">
+          
+          <div className="relative w-full h-32 mb-16 opacity-30">
             <Image 
               src={footerImg?.imageUrl || "https://picsum.photos/seed/footer/1200/200"}
               alt="Footer doodle"
@@ -276,8 +277,14 @@ export default function LandingPage() {
               data-ai-hint="doodle pattern"
             />
           </div>
-          <div className="text-center text-xs text-muted-foreground font-semibold">
-            © 2024 AcademiaFlow. Reimagined for the future of learning.
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border/30 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+            <span>© 2024 AcademiaFlow Inc.</span>
+            <div className="flex gap-8">
+              <Link href="#" className="hover:text-primary">Privacy Policy</Link>
+              <Link href="#" className="hover:text-primary">Terms of Service</Link>
+              <Link href="#" className="hover:text-primary">Cookies</Link>
+            </div>
           </div>
         </div>
       </footer>
@@ -285,14 +292,14 @@ export default function LandingPage() {
   );
 }
 
-function FeatureItem({ img, title, desc }: { img: string, title: string, desc: string }) {
+function FeatureItem({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <div className="flex flex-col items-center text-center max-w-xs mx-auto group">
-      <div className="w-24 h-24 relative mb-8 grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110">
-        <Image src={img} alt={title} fill className="object-contain" />
+    <div className="flex flex-col items-center text-center group">
+      <div className="mb-10 p-6 bg-muted/20 rounded-[2rem] transition-all duration-500 group-hover:scale-110 group-hover:bg-accent/10">
+        {icon}
       </div>
-      <h4 className="text-lg font-bold mb-2">{title}</h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+      <h4 className="text-xl font-bold mb-4">{title}</h4>
+      <p className="text-muted-foreground leading-relaxed font-medium text-sm">{desc}</p>
     </div>
   );
 }
@@ -300,14 +307,38 @@ function FeatureItem({ img, title, desc }: { img: string, title: string, desc: s
 function TiltedCard({ color, rotate, title, desc, top, zIndex }: { color: string, rotate: string, title: string, desc: string, top: string, zIndex: string }) {
   return (
     <div 
-      className={`absolute ${top} left-1/2 -translate-x-1/2 w-full max-w-sm aspect-[4/3] rounded-[40px] ${color} p-10 flex flex-col justify-end border border-black/5 shadow-2xl tilted-card ${zIndex}`}
+      className={`absolute ${top} left-1/2 -translate-x-1/2 w-full max-w-lg aspect-[16/10] rounded-[3rem] ${color} p-12 flex flex-col justify-between border border-border shadow-2xl tilted-card ${zIndex}`}
       style={{ transform: `translateX(-50%) rotate(${rotate})` }}
     >
-      <div className="mb-4">
-        <div className="h-12 w-12 bg-white/50 rounded-2xl mb-6"></div>
-        <h4 className="text-2xl font-bold mb-2">{title}</h4>
-        <p className="text-sm font-semibold opacity-60 leading-tight">{desc}</p>
+      <div className="flex justify-between items-start">
+        <div className="h-16 w-16 bg-accent/20 rounded-2xl flex items-center justify-center">
+          <BookOpen className="h-8 w-8 text-accent-foreground" />
+        </div>
+        <div className="flex gap-1">
+          {[1, 2, 3].map(i => <div key={i} className="h-2 w-2 rounded-full bg-border"></div>)}
+        </div>
       </div>
+      <div>
+        <h4 className="text-3xl font-bold mb-3">{title}</h4>
+        <p className="text-base font-medium opacity-60 leading-relaxed max-w-xs">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function FooterColumn({ title, links }: { title: string, links: string[] }) {
+  return (
+    <div className="space-y-6">
+      <h4 className="text-xs font-bold uppercase tracking-widest text-primary">{title}</h4>
+      <ul className="space-y-4">
+        {links.map(link => (
+          <li key={link}>
+            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              {link}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
