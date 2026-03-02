@@ -1,13 +1,33 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Overview } from "@/components/dashboard/Overview";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Timer, Trophy, Calendar, BookOpen, Clock, Plus, Sparkles } from "lucide-react";
+import { Timer, Trophy, Calendar, BookOpen, Clock, Plus, Sparkles, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUser } from "@/firebase";
 
 export default function Dashboard() {
+  const { user, isUserLoading } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.push("/login");
+    }
+  }, [user, isUserLoading, router]);
+
+  if (isUserLoading || !user) {
+    return (
+      <div className="min-h-screen bg-grid flex items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-accent" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-grid">
       <Navbar />
@@ -16,13 +36,13 @@ export default function Dashboard() {
         {/* Welcome Header */}
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <h1 className="text-5xl font-medium text-primary mb-2">Welcome back, Alex</h1>
-            <p className="text-lg text-muted-foreground italic serif">You've studied 42 hours this week. Making great progress!</p>
+            <h1 className="text-5xl font-medium text-primary mb-2">Welcome back, {user.displayName?.split(" ")[0] || "Scholar"}</h1>
+            <p className="text-lg text-muted-foreground italic serif">You've studied 4.5 hours this week. Making great progress!</p>
           </div>
           <div className="flex items-center gap-4 bg-white p-3 pr-6 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit hand-drawn-border">
             <Avatar className="h-12 w-12 border-2 border-black">
-              <AvatarImage src="https://picsum.photos/seed/alex/100/100" />
-              <AvatarFallback>AX</AvatarFallback>
+              <AvatarImage src={user.photoURL || undefined} />
+              <AvatarFallback>{user.displayName?.charAt(0) || "S"}</AvatarFallback>
             </Avatar>
             <div>
               <p className="text-xs font-black uppercase tracking-tighter text-primary">Level 12 Scholar</p>
