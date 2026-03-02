@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "User": {
@@ -18,6 +19,11 @@
         "displayName": {
           "type": "string",
           "description": "The user's preferred display name."
+        },
+        "isPro": {
+          "type": "boolean",
+          "description": "Indicates if the user has a pro subscription.",
+          "default": false
         },
         "defaultStudyDurationMinutes": {
           "type": "number",
@@ -203,7 +209,7 @@
   "auth": {
     "providers": [
       "password",
-      "anonymous"
+      "google.com"
     ]
   },
   "firestore": {
@@ -231,7 +237,7 @@
           "schema": {
             "$ref": "#/backend/entities/Subject"
           },
-          "description": "Stores academic subjects created by a specific user. Includes denormalized 'userId' for authorization independence, ensuring the subject is owned by the user specified in the path.",
+          "description": "Stores academic subjects created by a specific user.",
           "params": [
             {
               "name": "userId",
@@ -251,7 +257,7 @@
           "schema": {
             "$ref": "#/backend/entities/StudySession"
           },
-          "description": "Records details of study sessions conducted by a user. Includes denormalized 'userId' for authorization independence, ensuring the session is owned by the user specified in the path.",
+          "description": "Records details of study sessions conducted by a user.",
           "params": [
             {
               "name": "userId",
@@ -271,7 +277,7 @@
           "schema": {
             "$ref": "#/backend/entities/Note"
           },
-          "description": "Contains user-specific notes, supporting the 'notebooks pages' feature. Includes denormalized 'userId' for authorization independence, ensuring the note is owned by the user specified in the path.",
+          "description": "Contains user-specific notes.",
           "params": [
             {
               "name": "userId",
@@ -285,6 +291,6 @@
         }
       }
     ],
-    "reasoning": "The Firestore structure for AcademiaFlow is designed around individual user ownership, leveraging a strict hierarchical path structure to ensure robust security, scalability, and debuggability. All user-specific data is nested directly under a top-level `/users/{userId}` collection.\n\n**Authorization Independence (CRITICAL):** This design principle is meticulously applied. For `User` profiles, the document ID is the user's `uid`, directly tying authorization to `request.auth.uid`. For all subcollections (`subjects`, `studySessions`, `notes`), the `userId` attribute is explicitly denormalized into every document. This means that security rules can always check `request.auth.uid == resource.data.userId` (for writes) or `request.auth.uid == userId` (from the path for reads) without requiring expensive and complex `get()` calls to parent documents. This approach allows atomic operations and simplifies rule logic considerably, making it easy to reason about access permissions.\n\n**Query-Allowed Patterns (QAPs):** The hierarchical structure inherently supports QAPs. By placing all private user data under `/users/{userId}`, any `list` operation initiated by an authenticated user is automatically scoped to their own data. For example, a query to `/users/{request.auth.uid}/subjects` will only return subjects owned by the current user. The Firestore rules will enforce that the `{userId}` wildcard in the path must match `request.auth.uid`, thus preventing users from accidentally or maliciously querying another user's data. This eliminates the need for complex filter clauses in security rules for `list` operations, making them efficient and secure by design.\n\n**Structural Segregation:** All documents within a given collection (`/users/{userId}/subjects`, `/users/{userId}/studySessions`, `/users/{userId}/notes`) share the same security posture – they are private to the owning user. There is no mixing of public/private or different permission levels within the same collection, simplifying security rule sets.\n\n**Access Modeling:** Path-based ownership (`/users/{userId}/data`) is consistently used for all entities. `User` data is at `/users/{userId}`. `Subjects`, `StudySessions`, and `Notes` are nested directly under the user's path, reflecting a clear 1:N relationship with the `User` and ensuring data privacy. The 'notebooks pages' feature is directly supported by the `/users/{userId}/notes` collection, allowing easy access to all notes for a given user."
+    "reasoning": "The Firestore structure is designed around strict user-based ownership to ensure high security and easy queryability."
   }
 }
