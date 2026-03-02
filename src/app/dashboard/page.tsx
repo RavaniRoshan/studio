@@ -1,33 +1,32 @@
-
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Overview } from "@/components/dashboard/Overview";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Timer, Trophy, Calendar, BookOpen, Clock, Plus } from "lucide-react";
+import { Timer, Trophy, Calendar, BookOpen, Clock, Plus, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-grid">
       <Navbar />
       
-      <main className="container mx-auto pt-24 pb-12 px-4">
+      <main className="container mx-auto pt-32 pb-12 px-6">
         {/* Welcome Header */}
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-primary mb-1">Welcome back, Alex</h1>
-            <p className="text-muted-foreground">You've studied 42 hours this week. Keep it up!</p>
+            <h1 className="text-5xl font-medium text-primary mb-2">Welcome back, Alex</h1>
+            <p className="text-lg text-muted-foreground italic serif">You've studied 42 hours this week. Making great progress!</p>
           </div>
-          <div className="flex items-center gap-3 bg-white p-2 pr-4 rounded-full border shadow-sm w-fit">
-            <Avatar className="h-10 w-10">
+          <div className="flex items-center gap-4 bg-white p-3 pr-6 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit hand-drawn-border">
+            <Avatar className="h-12 w-12 border-2 border-black">
               <AvatarImage src="https://picsum.photos/seed/alex/100/100" />
               <AvatarFallback>AX</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-xs font-semibold text-primary">Level 12 Scholar</p>
-              <div className="w-24 h-1.5 bg-muted rounded-full overflow-hidden">
+              <p className="text-xs font-black uppercase tracking-tighter text-primary">Level 12 Scholar</p>
+              <div className="w-32 h-2 bg-muted rounded-full mt-1 border border-black/10 overflow-hidden">
                 <div className="bg-accent h-full w-[65%]"></div>
               </div>
             </div>
@@ -35,24 +34,24 @@ export default function Dashboard() {
         </header>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          <StatCard icon={<Clock />} title="Focus Time" value="4.5h" trend="+12%" />
-          <StatCard icon={<Timer />} title="Sessions" value="8" trend="+2" />
-          <StatCard icon={<Trophy />} title="Streak" value="5 days" trend="New high!" />
-          <StatCard icon={<Calendar />} title="Completed" value="85%" trend="+5%" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <StatCard icon={<Clock className="h-5 w-5" />} title="Focus Time" value="4.5h" trend="+12%" color="bg-[#D1E9FF]" />
+          <StatCard icon={<Timer className="h-5 w-5" />} title="Sessions" value="8" trend="+2" color="bg-[#FFDBE6]" />
+          <StatCard icon={<Trophy className="h-5 w-5" />} title="Streak" value="5 days" trend="New high!" color="bg-[#FFC107]" />
+          <StatCard icon={<Calendar className="h-5 w-5" />} title="Completed" value="85%" trend="+5%" color="bg-[#DFFFD6]" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-8 space-y-10">
+          <div className="lg:col-span-8 space-y-12">
             <Overview />
             
             <section>
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-primary">Recent Sessions</h3>
-                <Button variant="ghost" size="sm" className="text-primary hover:bg-primary/5">View All</Button>
+              <div className="flex items-center justify-between mb-8 border-b-2 border-black/5 pb-4">
+                <h3 className="text-3xl font-medium text-primary italic">Recent Sessions</h3>
+                <Button variant="link" className="text-primary font-bold uppercase text-xs tracking-widest">View History</Button>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <SessionRow subject="Advanced Mathematics" duration="45 min" time="2h ago" notes="Focused on calculus integration techniques." />
                 <SessionRow subject="Molecular Biology" duration="25 min" time="5h ago" notes="Quick review of DNA replication steps." />
                 <SessionRow subject="World History" duration="90 min" time="Yesterday" notes="Read chapters 4-6 for the upcoming midterm." />
@@ -61,27 +60,27 @@ export default function Dashboard() {
           </div>
 
           {/* Sidebar Area */}
-          <div className="lg:col-span-4 space-y-8">
-            <Card className="bg-primary text-primary-foreground border-none overflow-hidden relative">
+          <div className="lg:col-span-4 space-y-10">
+            <Card className="bg-[#4D7BFF] text-white border-2 border-black shadow-[6px_6px_0px_0px_rgba(77,123,255,0.3)] hand-drawn-border overflow-hidden relative">
               <div className="absolute top-0 right-0 p-4 opacity-10">
-                <Plus className="h-24 w-24" />
+                <Sparkles className="h-24 w-24" />
               </div>
               <CardHeader>
-                <CardTitle>Quick Start</CardTitle>
+                <CardTitle className="serif italic text-3xl">Deep Work</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-primary-foreground/80 mb-6 text-sm">Ready to dive back in? Launch a quick 25-minute Pomodoro.</p>
-                <Button variant="secondary" className="w-full font-bold" asChild>
+                <p className="text-white/80 mb-8 text-lg font-medium">Ready to dive back in? Launch a quick 25-minute Pomodoro.</p>
+                <Button variant="secondary" className="w-full font-black uppercase tracking-widest py-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-2px] active:translate-y-[1px] transition-all" asChild>
                   <a href="/timer">Launch Study Timer</a>
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="border-primary/10">
+            <Card className="border-2 border-black hand-drawn-border bg-[#FCFBF5] shadow-[6px_6px_0px_0px_rgba(0,0,0,0.05)]">
               <CardHeader>
-                <CardTitle className="text-primary">Upcoming Goals</CardTitle>
+                <CardTitle className="text-primary serif text-2xl">Upcoming Goals</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 <GoalItem title="Math Midterm Prep" progress={75} />
                 <GoalItem title="History Essay Draft" progress={30} />
                 <GoalItem title="Bio Lab Report" progress={90} />
@@ -94,16 +93,16 @@ export default function Dashboard() {
   );
 }
 
-function StatCard({ icon, title, value, trend }: { icon: React.ReactNode, title: string, value: string, trend: string }) {
+function StatCard({ icon, title, value, trend, color }: { icon: React.ReactNode, title: string, value: string, trend: string, color: string }) {
   return (
-    <Card className="border-primary/5 hover:border-primary/20 transition-all shadow-sm">
+    <Card className={`${color} border-2 border-black hand-drawn-border scribble-hover shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`}>
       <CardContent className="pt-6">
-        <div className="flex items-center justify-between mb-2">
-          <div className="p-2 bg-primary/5 text-primary rounded-lg">{icon}</div>
-          <span className="text-xs font-medium text-accent-foreground px-2 py-0.5 bg-accent/20 rounded-full">{trend}</span>
+        <div className="flex items-center justify-between mb-4">
+          <div className="p-2 bg-white/40 border border-black/10 rounded-lg">{icon}</div>
+          <span className="text-[10px] font-black uppercase tracking-tighter px-2 py-1 bg-black/10 rounded-full">{trend}</span>
         </div>
-        <p className="text-sm text-muted-foreground">{title}</p>
-        <p className="text-2xl font-bold text-primary">{value}</p>
+        <p className="text-xs font-black uppercase tracking-widest text-black/60 mb-1">{title}</p>
+        <p className="text-3xl font-bold text-black">{value}</p>
       </CardContent>
     </Card>
   );
@@ -111,17 +110,17 @@ function StatCard({ icon, title, value, trend }: { icon: React.ReactNode, title:
 
 function SessionRow({ subject, duration, time, notes }: { subject: string, duration: string, time: string, notes: string }) {
   return (
-    <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border hover:shadow-md transition-all group">
-      <div className="h-12 w-12 rounded-xl bg-background flex items-center justify-center text-primary border border-primary/10 group-hover:scale-110 transition-transform">
-        <BookOpen className="h-6 w-6" />
+    <div className="flex items-center gap-6 p-6 bg-white rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.1)] transition-all group hand-drawn-border">
+      <div className="h-14 w-14 rounded-xl bg-[#FCFBF5] flex items-center justify-center text-primary border-2 border-black group-hover:scale-110 transition-transform">
+        <BookOpen className="h-7 w-7" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-1">
-          <h4 className="font-bold text-primary truncate">{subject}</h4>
-          <span className="text-xs text-muted-foreground font-medium">{time}</span>
+          <h4 className="text-xl font-bold text-primary truncate">{subject}</h4>
+          <span className="text-xs text-muted-foreground font-bold uppercase tracking-widest">{time}</span>
         </div>
-        <p className="text-xs text-muted-foreground truncate mb-1">{notes}</p>
-        <span className="text-[10px] font-bold uppercase tracking-wider text-accent-foreground bg-accent/10 px-2 py-0.5 rounded-md">{duration}</span>
+        <p className="text-sm text-muted-foreground truncate mb-2 italic serif">{notes}</p>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent-foreground bg-accent px-3 py-1 rounded-full border border-black/20">{duration}</span>
       </div>
     </div>
   );
@@ -129,12 +128,12 @@ function SessionRow({ subject, duration, time, notes }: { subject: string, durat
 
 function GoalItem({ title, progress }: { title: string, progress: number }) {
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between text-xs font-semibold">
+    <div className="space-y-3">
+      <div className="flex justify-between text-xs font-black uppercase tracking-widest">
         <span className="text-primary">{title}</span>
         <span className="text-muted-foreground">{progress}%</span>
       </div>
-      <div className="h-2 bg-muted rounded-full overflow-hidden">
+      <div className="h-3 bg-muted rounded-full border border-black/10 overflow-hidden">
         <div className="bg-primary h-full transition-all duration-1000" style={{ width: `${progress}%` }}></div>
       </div>
     </div>
