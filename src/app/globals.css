@@ -1,35 +1,29 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 120 13% 97%;
-    --foreground: 134 37% 10%;
+    --background: 60 30% 99%;
+    --foreground: 0 0% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 134 37% 10%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 134 37% 10%;
-    --primary: 134 37% 40%;
-    --primary-foreground: 120 13% 98%;
-    --secondary: 134 10% 90%;
-    --secondary-foreground: 134 37% 20%;
-    --muted: 134 10% 94%;
-    --muted-foreground: 134 20% 40%;
-    --accent: 82 56% 53%;
-    --accent-foreground: 134 37% 10%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 60 30% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 45 92% 60%;
+    --accent-foreground: 0 0% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 134 20% 88%;
-    --input: 134 20% 88%;
-    --ring: 134 37% 40%;
-    --chart-1: 134 37% 40%;
-    --chart-2: 82 56% 53%;
-    --chart-3: 134 20% 60%;
-    --chart-4: 82 40% 70%;
-    --chart-5: 134 30% 30%;
-    --radius: 0.75rem;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
+    --radius: 0.5rem;
   }
 }
 
@@ -44,4 +38,12 @@
 
 .timer-ring {
   transition: stroke-dashoffset 0.5s ease;
+}
+
+.tilted-card {
+  transition: transform 0.3s ease;
+}
+
+.tilted-card:hover {
+  transform: rotate(0deg) translateY(-10px) !important;
 }
