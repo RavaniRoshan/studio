@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from "@/firebase";
 
 export const metadata: Metadata = {
-  title: 'AcademiaFlow | The notebook that thinks with you',
+  title: 'Moxie | The notebook that thinks with you',
   description: 'The ultimate academic productivity workspace for modern students.',
 };
 

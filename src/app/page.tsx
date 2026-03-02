@@ -11,19 +11,19 @@ export default function LandingPage() {
             <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/>
             <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" strokeDasharray="2 4"/>
           </svg>
-          <span className="font-semibold text-lg tracking-tight">AcademiaFlow</span>
+          <span className="font-semibold text-lg tracking-tight">Moxie</span>
         </div>
         
         <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
           <Link href="/" className="hover:text-black">Home</Link>
           <Link href="/dashboard" className="hover:text-black">Dashboard</Link>
           <Link href="/timer" className="hover:text-black">Timer</Link>
-          <Link href="#" className="hover:text-black">Pricing</Link>
+          <Link href="/notebooks" className="hover:text-black">Notebooks</Link>
         </div>
 
-        <Link href="/dashboard">
+        <Link href="/signup">
           <Button variant="outline" className="border-black rounded text-xs font-semibold hover:bg-black hover:text-white transition-colors">
-            Get Started
+            Sign Up
           </Button>
         </Link>
       </nav>
@@ -45,12 +45,12 @@ export default function LandingPage() {
         </div>
         
         <h1 className="text-5xl md:text-6xl font-medium mb-8 leading-[1.1]">
-          The workspace that <br /> <span className="italic">thinks</span> with you
+          The notebook that <br /> <span className="italic">thinks</span> with you
         </h1>
         
-        <Link href="/dashboard">
+        <Link href="/login">
           <Button size="lg" className="bg-black text-white px-10 py-6 text-sm font-semibold rounded hover:bg-gray-800 transition-colors">
-            Launch Your Notebook
+            Start Writing
           </Button>
         </Link>
       </header>
@@ -172,8 +172,8 @@ export default function LandingPage() {
         <div className="bg-[#FFC107] w-full max-w-2xl mx-auto rounded-2xl p-12 md:p-16 relative overflow-hidden hand-drawn-border border-2 border-black flex flex-col md:flex-row items-center justify-between text-left gap-10">
           <div className="z-10 w-full md:w-1/2">
             <h3 className="text-3xl font-bold mb-4 text-black font-sans">Build your best work.</h3>
-            <p className="text-lg text-black/80 mb-10 font-medium">Join 50,000+ scholars building on AcademiaFlow.</p>
-            <Link href="/dashboard">
+            <p className="text-lg text-black/80 mb-10 font-medium">Join 50,000+ scholars building on Moxie.</p>
+            <Link href="/signup">
               <Button className="bg-black text-white px-10 py-6 text-sm font-semibold rounded hover:scale-105 transition-transform">
                 Start Now
               </Button>

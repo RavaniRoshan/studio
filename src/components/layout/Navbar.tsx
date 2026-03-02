@@ -23,7 +23,7 @@ export function Navbar() {
             <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/>
             <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" strokeDasharray="2 4"/>
           </svg>
-          <span className="text-xl font-bold tracking-tight text-primary">AcademiaFlow</span>
+          <span className="text-xl font-bold tracking-tight text-primary">Moxie</span>
         </Link>
 
         <div className="hidden md:flex gap-8 text-sm font-black uppercase tracking-widest text-muted-foreground">
@@ -72,7 +72,7 @@ export function Navbar() {
                 <Link href="/login">Log In</Link>
               </Button>
               <Button asChild className="bg-black text-white rounded-xl px-6 text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none">
-                <Link href="/login">Sign Up</Link>
+                <Link href="/signup">Sign Up</Link>
               </Button>
             </>
           )}
