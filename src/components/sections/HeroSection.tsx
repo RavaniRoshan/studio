@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const containerVariants = {
@@ -55,34 +54,14 @@ export default function HeroSection() {
           with you
         </motion.h1>
 
-        {/* CTA Buttons */}
-        <motion.div variants={itemVariants} className="space-y-3">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 hover:scale-[1.02] px-8 py-6 text-base font-medium w-full sm:w-auto"
-              aria-label="Open in Browser"
-            >
-              <Link href="/app">Open in Browser</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-gray-300 text-gray-900 hover:bg-gray-50 transition-all duration-200 hover:scale-[1.02] px-8 py-6 text-base font-medium w-full sm:w-auto"
-              aria-label="Download for Windows"
-            >
-              <a
-                href="https://github.com/your-org/your-app/releases/latest"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download for Windows
-              </a>
-            </Button>
-          </div>
-          <p className="text-sm text-gray-600">Also available for macOS and Linux.</p>
+        {/* CTA Button */}
+        <motion.div variants={itemVariants}>
+          <Button
+            size="lg"
+            className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 hover:scale-[1.02] px-8 py-6 text-base font-medium"
+          >
+            Try it free
+          </Button>
         </motion.div>
       </motion.div>
     </section>
