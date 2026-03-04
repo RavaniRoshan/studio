@@ -5,20 +5,23 @@ import { motion } from 'framer-motion';
 const features = [
   {
     id: 1,
-    title: 'Knows what you\'re working on',
-    description: 'It reads what you\'re working on and gives relevant help. No need to explain your context.',
+    title: 'Screen-aware support',
+    description:
+      'Sprout AI responds to where you are: planning on Bulletin Dashboard, drafting in Leaf Editor, or reflecting in Session Logbook.',
     image: '/images/feature-knows.png',
   },
   {
     id: 2,
-    title: 'Helps as you go',
-    description: 'Clarifies confusing parts, suggests what to explore next, and keeps you moving.',
+    title: 'Built for deep focus',
+    description:
+      'From Focus Gadget nudges to low-friction AI prompts, Studio-One helps students and researchers protect attention during demanding work.',
     image: '/images/feature-helps.png',
   },
   {
     id: 3,
-    title: 'Explains until it clicks',
-    description: 'Practice problems, visual explanations, and step-by-step breakdowns until you get it.',
+    title: 'Local-first confidence',
+    description:
+      'Offline-first architecture keeps your study flow available without constant connectivity, with control centralized in Settings & Preferences.',
     image: '/images/feature-explains.png',
   },
 ];
@@ -41,7 +44,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut" as const,
+      ease: 'easeOut' as const,
     },
   },
 };
@@ -50,20 +53,18 @@ export default function AIFeatures() {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50/50">
       <div className="max-w-6xl mx-auto">
-        {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16"
         >
-          AI that helps you
+          Screens that work together,
           <br />
-          understand, not just answer
+          so your energy lasts longer
         </motion.h2>
 
-        {/* Feature Cards */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -79,7 +80,6 @@ export default function AIFeatures() {
               transition={{ duration: 0.3 }}
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
             >
-              {/* Illustration */}
               <div className="mb-6 flex justify-center">
                 <img
                   src={feature.image}
@@ -89,7 +89,6 @@ export default function AIFeatures() {
                 />
               </div>
 
-              {/* Content */}
               <h3 className="text-xl font-semibold text-gray-900 text-center mb-3">
                 {feature.title}
               </h3>
