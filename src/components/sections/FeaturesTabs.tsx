@@ -47,7 +47,7 @@ export default function FeaturesTabs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
+          className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12"
         >
           Everything you need in one place
         </motion.h2>
@@ -66,15 +66,15 @@ export default function FeaturesTabs() {
               onClick={() => setActiveTab(tab.id)}
               className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                 activeTab === tab.id
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'text-foreground'
+                  : 'text-foreground/70 hover:text-foreground'
               }`}
             >
               {tab.label}
               {activeTab === tab.id && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               )}
@@ -97,17 +97,17 @@ export default function FeaturesTabs() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="bg-accent-blue rounded-2xl p-8 md:p-12 text-white"
+              className="bg-primary radius-rough shadow-hard p-8 md:p-12 text-primary-foreground"
             >
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 {tabContent[activeTab as keyof typeof tabContent].title}
               </h3>
-              <p className="text-lg text-white/90 mb-8 max-w-2xl">
+              <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl">
                 {tabContent[activeTab as keyof typeof tabContent].description}
               </p>
               <Button
                 variant="secondary"
-                className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 hover:scale-[1.02]"
+                className="bg-card text-foreground hover:bg-background transition-all duration-200 hover:scale-[1.02]"
               >
                 Try it free
               </Button>
