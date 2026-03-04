@@ -5,36 +5,36 @@ import { motion } from 'framer-motion';
 const features = [
   {
     id: 1,
-    title: 'Notes',
-    description: 'A rich editor for capturing and organizing your notes',
+    title: '1) Orient in Bulletin Dashboard',
+    description: 'Review priorities, pick a target leaf, and start a calm session plan in under a minute.',
     image: '/images/notes-card.png',
     bgColor: 'bg-accent-yellow',
   },
   {
     id: 2,
-    title: 'AI Chat',
-    description: 'Ask questions, explore ideas, get clear explanations',
+    title: '2) Capture in Leaf Editor',
+    description: 'Collect source notes, structure your argument, and mark unclear areas while context is fresh.',
     image: '/images/ai-chat-card.png',
     bgColor: 'bg-accent-pink',
   },
   {
     id: 3,
-    title: 'Recorder',
-    description: 'Record lectures or meetings. Get instant transcripts and summaries.',
+    title: '3) Lock in with Focus Gadget',
+    description: 'Run a distraction-limited deep work block with a timer and intentional break checkpoints.',
     image: '/images/recorder-card.png',
     bgColor: 'bg-accent-green',
   },
   {
     id: 4,
-    title: 'Tutorials',
-    description: 'Generate video explanations for any concept',
+    title: '4) Clarify with Sprout AI',
+    description: 'Ask for concise explanations, rewrite options, or next-step prompts grounded in your current leaf.',
     image: '/images/tutorials-card.png',
     bgColor: 'bg-accent-orange',
   },
   {
     id: 5,
-    title: 'Practice tools',
-    description: 'Create flashcards and quizzes instantly',
+    title: '5) Close in Session Logbook',
+    description: 'Record outcomes, blockers, and tomorrow\'s first move, then tune defaults in Settings & Preferences.',
     image: '/images/practice-card.png',
     bgColor: 'bg-accent-light-blue',
   },
@@ -58,7 +58,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut" as const,
+      ease: 'easeOut' as const,
     },
   },
 };
@@ -67,20 +67,19 @@ export default function FeatureCards() {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50/50">
       <div className="max-w-3xl mx-auto">
-        {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4"
         >
-          Stop juggling five
-          <br />
-          different apps
+          Deep Work Session flow
         </motion.h2>
+        <p className="text-gray-600 text-center mb-12">
+          A 5-step rhythm designed to reduce context switching and rebuild consistent study momentum.
+        </p>
 
-        {/* Feature Cards */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -96,7 +95,6 @@ export default function FeatureCards() {
               transition={{ duration: 0.3 }}
               className={`${feature.bgColor} rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8`}
             >
-              {/* Text Content */}
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
                   {feature.title}
@@ -106,7 +104,6 @@ export default function FeatureCards() {
                 </p>
               </div>
 
-              {/* Illustration */}
               <div className="flex-shrink-0">
                 <img
                   src={feature.image}
