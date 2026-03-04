@@ -5,66 +5,54 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
 const tabs = [
-  { id: 'bulletin', label: 'Bulletin Dashboard' },
-  { id: 'leaf', label: 'Leaf Editor' },
-  { id: 'focus', label: 'Focus Gadget' },
-  { id: 'logbook', label: 'Session Logbook' },
-  { id: 'sprout', label: 'Sprout AI' },
-  { id: 'settings', label: 'Settings & Preferences' },
+  { id: 'galileo', label: 'Ask Galileo' },
+  { id: 'visualize', label: 'Visualize concepts' },
+  { id: 'connect', label: 'Connect your resources' },
+  { id: 'practice', label: 'Practice suggestions' },
+  { id: 'learn', label: 'Practice & learn' },
 ];
 
 const tabContent = {
-  bulletin: {
-    title: 'Bulletin Dashboard',
-    description:
-      'Start every study sprint with an offline-first command center. See today\'s priorities, active sessions, and pinned leaves at a glance.',
+  galileo: {
+    title: 'Meet Galileo',
+    description: 'Your AI learning partner. Ask questions, get explanations, and deepen your understanding with personalized guidance.',
   },
-  leaf: {
-    title: 'Leaf Editor',
-    description:
-      'Capture ideas in a calm writing space designed like a Digital Botanist\'s Journal: structured notes, references, and quick links without tab sprawl.',
+  visualize: {
+    title: 'Visual Learning',
+    description: 'Transform complex concepts into visual diagrams and mind maps that make learning intuitive and memorable.',
   },
-  focus: {
-    title: 'Focus Gadget',
-    description:
-      'Protect deep work with lightweight timing, break prompts, and distraction guards so you can stay in one intentional session.',
+  connect: {
+    title: 'Connect Resources',
+    description: 'Link your notes, PDFs, and web resources in one unified knowledge graph that grows with your learning.',
   },
-  logbook: {
-    title: 'Session Logbook',
-    description:
-      'Review what you learned, what blocked you, and what to do next. Every session entry builds momentum instead of burnout.',
+  practice: {
+    title: 'Smart Practice',
+    description: 'Get personalized practice suggestions based on your learning patterns and areas that need reinforcement.',
   },
-  sprout: {
-    title: 'Sprout AI',
-    description:
-      'Get grounded help from your local context: ask for summaries, concept checks, and next actions while staying connected to your notes.',
-  },
-  settings: {
-    title: 'Settings & Preferences',
-    description:
-      'Tune rhythms, themes, and study defaults for your mind. Studio-One works on desktop via Tauri across Windows, macOS, and Linux.',
+  learn: {
+    title: 'Learn Effectively',
+    description: 'Combine active recall, spaced repetition, and interleaved practice for optimal learning outcomes.',
   },
 };
 
 export default function FeaturesTabs() {
-  const [activeTab, setActiveTab] = useState('bulletin');
+  const [activeTab, setActiveTab] = useState('galileo');
 
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
+        {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4"
+          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
         >
-          Product overview
+          Everything you need in one place
         </motion.h2>
-        <p className="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-          Studio-One is an offline-first digital study companion for students and researchers navigating productivity burnout.
-        </p>
 
+        {/* Tabs Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,6 +82,7 @@ export default function FeaturesTabs() {
           ))}
         </motion.div>
 
+        {/* Tab Content Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +109,7 @@ export default function FeaturesTabs() {
                 variant="secondary"
                 className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 hover:scale-[1.02]"
               >
-                Explore Studio-One
+                Try it free
               </Button>
             </motion.div>
           </AnimatePresence>
