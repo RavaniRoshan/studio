@@ -48,7 +48,7 @@ const itemVariants = {
 
 export default function AIFeatures() {
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50/50">
+    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <motion.h2
@@ -56,7 +56,7 @@ export default function AIFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16"
+          className="text-3xl md:text-4xl font-bold text-foreground text-center mb-16"
         >
           AI that helps you
           <br />
@@ -77,7 +77,7 @@ export default function AIFeatures() {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
+              className="paper-surface radius-rough p-6 shadow-hard transition-transform duration-300"
             >
               {/* Illustration */}
               <div className="mb-6 flex justify-center">
@@ -90,10 +90,10 @@ export default function AIFeatures() {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-semibold text-gray-900 text-center mb-3">
+              <h3 className="text-xl font-semibold text-foreground text-center mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-center leading-relaxed">
+              <p className="text-foreground/80 text-center leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>

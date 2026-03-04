@@ -12,8 +12,9 @@ export default {
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
-        code: ['monospace'],
+        headline: ['Fraunces', 'serif'],
+        hand: ['Kalam', 'cursive'],
+        code: ['JetBrains Mono', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -46,13 +47,6 @@ export default {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        'accent-blue': '#3B82F6',
-        'accent-yellow': '#FEF3C7',
-        'accent-pink': '#FCE7F3',
-        'accent-green': '#D1FAE5',
-        'accent-orange': '#FFEDD5',
-        'accent-light-blue': '#DBEAFE',
-        'star': '#FBBF24',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

@@ -12,7 +12,7 @@ export default function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="bg-accent-yellow rounded-3xl p-8 md:p-12 lg:p-16"
+          className="paper-surface radius-rough shadow-hard p-8 md:p-12 lg:p-16"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
@@ -22,17 +22,17 @@ export default function CTABanner() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Your ideas deserve
                 <br />
                 better tools
               </h2>
-              <p className="text-gray-700 mb-8 max-w-md">
+              <p className="text-foreground/80 mb-8 max-w-md">
                 No matter what you're learning, Opennote is where it all comes together.
               </p>
               <Button
                 size="lg"
-                className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 hover:scale-[1.02] px-8"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 hover:scale-[1.02] px-8"
               >
                 Try it free
               </Button>

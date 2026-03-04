@@ -28,7 +28,7 @@ const itemVariants = {
 
 export default function HeroSection() {
   return (
-    <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
+    <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-paper-texture">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -47,7 +47,7 @@ export default function HeroSection() {
         {/* Headline */}
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight mb-8"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight mb-8"
         >
           The notebook that thinks
           <br />
@@ -58,7 +58,7 @@ export default function HeroSection() {
         <motion.div variants={itemVariants}>
           <Button
             size="lg"
-            className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 hover:scale-[1.02] px-8 py-6 text-base font-medium"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 hover:scale-[1.02] px-8 py-6 text-base font-medium radius-rough shadow-hard"
           >
             Try it free
           </Button>
